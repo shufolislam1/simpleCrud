@@ -8,7 +8,7 @@ const home = () => {
         <div>
             <div className='p-3 m-5'>
                 <Link to={'/addItem'}>
-                <Button variant="info">ADD ITEM</Button>
+                    <Button variant="info">ADD ITEM</Button>
                 </Link>
             </div>
             <div className='p-3 m-5'>
@@ -29,7 +29,9 @@ const home = () => {
                             <td>Mark</td>
                             <td>Otto</td>
                             <td>@mdo</td>
-                            <td><Button size='sm' variant="info">Update Item</Button></td>
+                            <Link to={"/updateItem"}>
+                                <td><Button size='sm' variant="info">Update Item</Button></td>
+                            </Link>
                             <td><Button size='sm' variant="info">Delete Item</Button></td>
                         </tr>
                         <tr>
@@ -37,14 +39,18 @@ const home = () => {
                             <td>Jacob</td>
                             <td>Thornton</td>
                             <td>@fat</td>
-                            <td><Button size='sm' variant="info">Update Item</Button></td>
+                            <Link to={"/updateItem"}>
+                                <td><Button size='sm' variant="info">Update Item</Button></td>
+                            </Link>
                             <td><Button size='sm' variant="info">Delete Item</Button></td>
                         </tr>
                         <tr>
                             <td>3</td>
                             <td colSpan={2}>Larry the Bird</td>
                             <td>@twitter</td>
-                            <td><Button size='sm' variant="info">Update Item</Button></td>
+                            <Link to={"/updateItem"}>
+                                <td><Button size='sm' variant="info">Update Item</Button></td>
+                            </Link>
                             <td><Button size='sm' variant="info">Delete Item</Button></td>
                         </tr>
                     </tbody>
