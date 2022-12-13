@@ -1,6 +1,8 @@
 import React from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import swal from 'sweetalert';
+
 
 
 const AddItem = () => {
@@ -21,7 +23,7 @@ const AddItem = () => {
             .then((res) => res.json())
             .then(data => {
                 console.log('success:', data);
-                alert("added successfully");
+                swal("Good job!", "Product Successfully added!", "success");
                 event.reset();
             })
             .catch(error => {

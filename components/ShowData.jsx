@@ -10,7 +10,6 @@ const ShowData = ({ product }) => {
                 <Table striped bordered hover>
                     <thead>
                         <tr>
-                            <th>sl. no</th>
                             <th>Name</th>
                             <th>Price</th>
                             <th>Quantity</th>
@@ -20,7 +19,7 @@ const ShowData = ({ product }) => {
                     </thead>
                     <tbody>
                         <tr>
-                            <td>1</td>
+
                             <td>{product?.name}</td>
                             <td>{product?.price}</td>
                             <td>{product?.quantity}</td>
