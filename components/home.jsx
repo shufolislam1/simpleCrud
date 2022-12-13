@@ -1,9 +1,15 @@
-import React from 'react';
-import { Table } from 'react-bootstrap';
+import React, { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import ShowData from './ShowData';
 
 const home = () => {
+    const [info, setInfo] = useState([]);
+    useEffect(() => {
+        fetch('http://localhost:5000/')
+            .then(res => res.json())
+            .then(data => setInfo(data))
+    }, [])
     return (
         <div>
             <div className='p-3 m-5'>
@@ -11,51 +17,9 @@ const home = () => {
                     <Button variant="info">ADD ITEM</Button>
                 </Link>
             </div>
-            <div className='p-3 m-5'>
-                <Table striped bordered hover>
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Product Name</th>
-                            <th>Price</th>
-                            <th>Quantity</th>
-                            <th>operation 1</th>
-                            <th>operation 2</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <Link to={"/updateItem"}>
-                                <td><Button size='sm' variant="info">Update Item</Button></td>
-                            </Link>
-                            <td><Button size='sm' variant="info">Delete Item</Button></td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                            <Link to={"/updateItem"}>
-                                <td><Button size='sm' variant="info">Update Item</Button></td>
-                            </Link>
-                            <td><Button size='sm' variant="info">Delete Item</Button></td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td colSpan={2}>Larry the Bird</td>
-                            <td>@twitter</td>
-                            <Link to={"/updateItem"}>
-                                <td><Button size='sm' variant="info">Update Item</Button></td>
-                            </Link>
-                            <td><Button size='sm' variant="info">Delete Item</Button></td>
-                        </tr>
-                    </tbody>
-                </Table>
-            </div>
+            {
+                info.map(product => <ShowData product={product}></ShowData>)
+            }
         </div>
     );
 };
