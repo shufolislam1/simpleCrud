@@ -20,6 +20,7 @@ const AddItem = () => {
         .then((res) => res.json())
         .then(data => {
             console.log('success:', data);
+            alert("added successfully");
         })
         .catch(error => {
             console.log('Error:', error);
