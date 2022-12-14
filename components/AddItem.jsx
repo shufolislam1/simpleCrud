@@ -1,11 +1,11 @@
 import React from 'react';
 import { Button, Form } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import ShowData from './ShowData';
 import swal from 'sweetalert';
 
-
-
 const AddItem = () => {
+    const navigate = useNavigate();
     const handleAddItem = event => {
         event.preventDefault();
         const name = event.target.formBasicName.value;
@@ -22,9 +22,8 @@ const AddItem = () => {
         })
             .then((res) => res.json())
             .then(data => {
-                console.log('success:', data);
                 swal("Good job!", "Product Successfully added!", "success");
-                event.reset();
+                navigate('/');
             })
             .catch(error => {
                 console.log('Error:', error);
@@ -33,11 +32,6 @@ const AddItem = () => {
 
     return (
         <div className='m-5'>
-            <div className='py-3 '>
-                <Link to={'/'}>
-                    <Button variant="info">Go Back</Button>
-                </Link>
-            </div>
             <Form onSubmit={handleAddItem}>
                 <Form.Group className="mb-3" controlId="formBasicName">
                     <Form.Label>Product Name</Form.Label>
