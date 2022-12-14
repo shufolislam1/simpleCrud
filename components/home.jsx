@@ -18,7 +18,7 @@ const home = () => {
                 </Link>
             </div>
             {
-                info.map(product => <ShowData product={product}></ShowData>)
+                info.map(product => <ShowData key={product._id} product={product}></ShowData>)
             }
         </div>
     );

@@ -1,9 +1,20 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Table } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 const ShowData = ({ product }) => {
+    // const [dItem, setDitem] = useState('');
+    const handleDelete = id => {
+        console.log('something');
+        useEffect(() => {
+            fetch(`http://localhost:5000/${id}`, {
+                method: 'DELETE'
+            })
+                .then(res => res.json())
+                .then(data => console.log(data))
+        }, [])
+    }
     return (
         <div>
             <div className='mx-5'>
@@ -19,14 +30,19 @@ const ShowData = ({ product }) => {
                     </thead>
                     <tbody>
                         <tr>
-
                             <td>{product?.name}</td>
                             <td>{product?.price}</td>
                             <td>{product?.quantity}</td>
-                            <Link to={"/updateItem"}>
-                                <td><Button size='sm' variant="info">Update Item</Button></td>
-                            </Link>
-                            <td><Button size='sm' variant="info">Delete Item</Button></td>
+                            <td>
+                                <Link to={"/updateItem"}>
+                                    <Button size='sm' variant="info">Update Item</Button>
+                                </Link>
+                            </td>
+                            <td>
+                                <Link>
+                                    <Button onClick={() => handleDelete(product?._id)} size='sm' variant="info">Delete Item</Button>
+                                </Link>
+                            </td>
                         </tr>
                     </tbody>
                 </Table>
