@@ -4,7 +4,6 @@ import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 const ShowData = ({ product }) => {
-    // const [dItem, setDitem] = useState('');
     const handleDelete = id => {
         console.log('something');
         useEffect(() => {
@@ -34,7 +33,7 @@ const ShowData = ({ product }) => {
                             <td>{product?.price}</td>
                             <td>{product?.quantity}</td>
                             <td>
-                                <Link to={"/updateItem"}>
+                                <Link to={`/updateItem/${product._id}`}>
                                     <Button size='sm' variant="info">Update Item</Button>
                                 </Link>
                             </td>
