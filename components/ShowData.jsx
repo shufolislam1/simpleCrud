@@ -1,18 +1,31 @@
 import React, { useEffect, useState } from 'react';
 import { Table } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import axios from 'axios';
+import swal from 'sweetalert';
 
 const ShowData = ({ product }) => {
+    // useEffect(() => {
+    //     fetch(`http://localhost:5000/${id}`, {
+    //         method: 'DELETE'
+    //     })
+    //         .then(res => res.json())
+    //         .then(data => {
+    //             swal("Good job!", "Product Successfully added!", "success");
+    //         })
+    // }, [])
     const handleDelete = id => {
-        console.log('something');
-        useEffect(() => {
-            fetch(`http://localhost:5000/${id}`, {
-                method: 'DELETE'
+        axios.delete(`http://localhost:5000/${id}`)
+            .then(function (response) {
+                // handle success
+                swal("Good job!", "Product Successfully added!", "success");
+                console.log(response);
             })
-                .then(res => res.json())
-                .then(data => console.log(data))
-        }, [])
+            .catch(function (error) {
+                // handle error
+                console.log(error.response.data);
+            })
     }
     return (
         <div>
@@ -38,9 +51,7 @@ const ShowData = ({ product }) => {
                                 </Link>
                             </td>
                             <td>
-                                <Link>
-                                    <Button onClick={() => handleDelete(product?._id)} size='sm' variant="info">Delete Item</Button>
-                                </Link>
+                                <Button onClick={() => handleDelete(product?._id)} size='sm' variant="info">Delete Item</Button>
                             </td>
                         </tr>
                     </tbody>

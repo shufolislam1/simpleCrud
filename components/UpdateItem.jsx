@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { Link, useParams } from 'react-router-dom';
+import swal from 'sweetalert';
 
 const UpdateItem = () => {
     const {id} = useParams();
@@ -10,6 +11,29 @@ const UpdateItem = () => {
         .then(res => res.json())
         .then(data => setProduct(data))
     },[])
+
+    const handleUpdate = (event, id) => {
+        event.preventDefault();
+        const name = event?.target?.name?.value;
+        const price = event?.target?.price?.value;
+        const quantity = event?.target?.quantity?.value;
+        const infos = { name, price, quantity }
+        fetch(`http://localhost:5000/updateItem/${id}`, {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(infos)
+        })
+            .then((res) => res.json())
+            .then(data => {
+                swal("Good job!", "Product Successfully Updated!", "success");
+                navigate('/');
+            })
+            .catch(error => {
+                console.log('Error:', error);
+            })
+    }
     return (
         <div>
             <div className='m-5'>
@@ -18,16 +42,16 @@ const UpdateItem = () => {
                         <Button variant="info">Go Back</Button>
                     </Link>
                 </div>
-                <Form>
-                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                <Form onClick={handleUpdate}>
+                    <Form.Group className="mb-3" name="name">
                         <Form.Label>Update Product Name</Form.Label>
                         <Form.Control type="text" value={product.name} />
                     </Form.Group>
-                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                    <Form.Group className="mb-3"price="price">
                         <Form.Label>Update Product Price</Form.Label>
                         <Form.Control type="text" value={product.price} />
                     </Form.Group>
-                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                    <Form.Group className="mb-3" quantity="quantity">
                         <Form.Label>Update Product Quantity</Form.Label>
                         <Form.Control type="text" value={product.quantity} />
                     </Form.Group>

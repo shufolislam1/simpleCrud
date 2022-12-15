@@ -32,6 +32,11 @@ const AddItem = () => {
 
     return (
         <div className='m-5'>
+            <div className='py-3 '>
+                <Link to={'/'}>
+                    <Button variant="info">Go Back</Button>
+                </Link>
+            </div>
             <Form onSubmit={handleAddItem}>
                 <Form.Group className="mb-3" controlId="formBasicName">
                     <Form.Label>Product Name</Form.Label>
