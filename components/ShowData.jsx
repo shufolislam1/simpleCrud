@@ -15,16 +15,26 @@ const ShowData = ({ product }) => {
     //             swal("Good job!", "Product Successfully added!", "success");
     //         })
     // }, [])
+    // const [oneProduct, setOneProduct] = useState({})
+    // console.log(product);
     const handleDelete = id => {
         axios.delete(`http://localhost:5000/${id}`)
             .then(function (response) {
                 // handle success
-                swal("Good job!", "Product Successfully added!", "success");
-                console.log(response);
+                if(response.data.acknowledged === true){
+                    // console.log("deleted hahaha");
+                    // const remaining = product?.filter(oneProduct => oneProduct._id !== id)
+                    // product(remaining);
+                    // for(const oneProduct in product){
+                    //     let some = oneProduct._id !== id;
+                    //     product(some);
+                    // }
+                    swal("Good job!", "Product Deleted Successfully!", "success");
+                }
             })
             .catch(function (error) {
                 // handle error
-                console.log(error.response.data);
+                console.log(error);
             })
     }
     return (
