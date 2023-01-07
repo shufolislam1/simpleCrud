@@ -18,7 +18,7 @@ const ShowData = ({ product }) => {
     // const [oneProduct, setOneProduct] = useState({})
     // console.log(product);
     const handleDelete = id => {
-        axios.delete(`http://localhost:5000/${id}`)
+        axios.delete(`simplecrudser.up.railway.app/${id}`)
             .then(function (response) {
                 // handle success
                 if(response.data.acknowledged === true){

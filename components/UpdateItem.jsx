@@ -7,7 +7,7 @@ const UpdateItem = () => {
     const {id} = useParams();
     const [product, setProduct] = useState({});
     useEffect(() => {
-        fetch(`http://localhost:5000/updateItem/${id}`)
+        fetch(`simplecrudser.up.railway.app/updateItem/${id}`)
         .then(res => res.json())
         .then(data => setProduct(data))
     },[])
@@ -18,7 +18,7 @@ const UpdateItem = () => {
         const price = event?.target?.price?.value;
         const quantity = event?.target?.quantity?.value;
         const infos = { name, price, quantity }
-        fetch(`http://localhost:5000/updateItem/${id}`, {
+        fetch(`simplecrudser.up.railway.app/updateItem/${id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'

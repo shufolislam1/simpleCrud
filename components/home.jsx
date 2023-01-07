@@ -6,7 +6,7 @@ import ShowData from './ShowData';
 const home = () => {
     const [info, setInfo] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/')
+        fetch('simplecrudser.up.railway.app/')
             .then(res => res.json())
             .then(data => setInfo(data))
     }, [])

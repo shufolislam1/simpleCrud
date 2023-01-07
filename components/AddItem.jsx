@@ -13,7 +13,7 @@ const AddItem = () => {
         const quantity = event.target.formBasicQuantity.value;
         const info = { name, price, quantity }
         // console.log(info);
-        fetch('http://localhost:5000/addItem', {
+        fetch('simplecrudser.up.railway.app/addItem', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

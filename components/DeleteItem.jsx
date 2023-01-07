@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 const DeleteItem = () => {
     const [dItem, setDitem] = useState();
     useEffect(() => {
-        fetch(`http://localhost:5000/${id}`)
+        fetch(`simplecrudser.up.railway.app/${id}`)
         .then(res => res.json())
         .then(data => setDitem(data))
     },[])
